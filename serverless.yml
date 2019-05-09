@@ -1,0 +1,17 @@
+service: candidate-nodejs-rest-api
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  region: us-east-1
+
+functions:
+  candidateSubmission:
+    handler: api/candidate.submit
+    memorySize: 128
+    description: Submit candidate information and starts interview process.
+    events:
+      - http: 
+          path: candidates
+          method: post
